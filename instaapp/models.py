@@ -26,6 +26,10 @@ class Image(models.Model):
    
     def update_Caption(self):
         self.update()
+    @classmethod
+    def photo_url(self):
+        if self.insta_image and hasattr(self.insta_image, 'url'):
+            return self.photo.url
 class NewsLetterRecipients(models.Model):
     name = models.CharField(max_length = 30)
     email = models.EmailField()

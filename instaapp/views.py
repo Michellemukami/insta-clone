@@ -8,7 +8,7 @@ from .forms import NewsLetterForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
-from .forms import NewArticleForm, NewsLetterForm, NewsProfileForm
+from .forms import NewArticleForm, NewsLetterForm, NewsProfileForm,CommentForm
 
 from django.contrib.auth.models import User
 
@@ -53,11 +53,11 @@ def search_results(request):
         searched_articles = Article.search_by_title(search_term)
         message = f"{search_term}"
 
-        return render(request, 'all-news/search.html',{"message":message,"articles": searched_articles})
+        return render(request, 'search.html',{"message":message,"articles": searched_articles})
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'all-news/search.html',{"message":message})
+        return render(request, 'search.html',{"message":message})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
@@ -93,3 +93,17 @@ def user(request):
     profile = Profile.objects.get(username=user)
     posts=Image.objects.filter(id=user.id)
     return render(request, 'user-post.html',{"profile":profile,"posts":posts})
+@login_required(login_url='/accounts/login/')
+def comment(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.editor = current_user
+            comment.save()
+        return redirect('user')
+
+    else:
+        form = CommentForm()
+    return render(request, 'comment.html', {"form": form}) 

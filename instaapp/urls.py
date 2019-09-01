@@ -12,6 +12,7 @@ urlpatterns=[
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^new/article$', views.new_article, name='new-article'),
     url(r'^home/', views.home, name='home'),
+    url(r'^comment/', views.comment, name='comment'),
    
    
 ]
