@@ -5,5 +5,5 @@ from .models import Image,Profile
 class ImageAdmin(admin.ModelAdmin):
    
 
-admin.site.register(Image,ImageAdmin)
-admin.site.register(Profile)
+    admin.site.register(Image)
+    admin.site.register(Profile)

@@ -83,7 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'instakami',
-        'USER': 'michelle',
+        'USER': 'kami',
     'PASSWORD':'kami',
     }
 }
@@ -144,4 +144,5 @@ EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+LOGIN_REDIRECT_URL= '/new/profile'
 django_heroku.settings(locals())
