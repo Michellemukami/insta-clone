@@ -12,9 +12,8 @@ class Profile(models.Model):
 class Image(models.Model):
     image_name = models.CharField(max_length =60)
     image_caption = HTMLField()
-    profile = models.ForeignKey(Profile,blank =True)
-    editor = models.ForeignKey(User,on_delete=models.CASCADE,blank =True)
-    like = models.IntegerField()
+    profile = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    like = models.IntegerField(null=True)
     insta_image = models.ImageField(upload_to = 'pixels/', blank=True)
     
     def __str__(self):

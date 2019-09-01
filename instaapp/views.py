@@ -10,7 +10,7 @@ from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
 from .forms import NewArticleForm, NewsLetterForm, NewsProfileForm
 
-
+from django.contrib.auth.models import User
 
 @login_required(login_url='/accounts/login/')
 def home(request):
@@ -19,6 +19,7 @@ def home(request):
     profile = Profile.objects.get(username=current_user)
     users = Profile.objects.all()
     
+    to_follow = User.objects.all().exclude(id=request.user.id)
     return render(request, 'home.html', {"posts":posts,"profile":profile, "users":users, })
 
 # Create your views here.
@@ -88,7 +89,7 @@ def new_article(request):
     return render(request, 'new-article.html', {"form": form}) 
 @login_required(login_url='/accounts/login/')
 def user(request):
-    current_user = request.user
-    profile = Profile.objects.get(username=current_user)
-    posts=Image.objects.filter(profile_id=current_user.id)
+    user = request.user
+    profile = Profile.objects.get(username=user)
+    posts=Image.objects.filter(id=user.id)
     return render(request, 'user-post.html',{"profile":profile,"posts":posts})

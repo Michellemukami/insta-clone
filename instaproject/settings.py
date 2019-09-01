@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'instaproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'instakami',
+        'NAME': 'will',
         'USER': 'kami',
     'PASSWORD':'kami',
     }
@@ -144,5 +144,5 @@ EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-LOGIN_REDIRECT_URL= '/new/profile'
+LOGIN_REDIRECT_URL= 'home'
 django_heroku.settings(locals())
