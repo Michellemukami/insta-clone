@@ -18,9 +18,9 @@ def home(request):
     posts = Image.objects.all()
     profile = Profile.objects.get(username=current_user)
     users = Profile.objects.all()
-    
+    views = Profile.objects.all()
     to_follow = User.objects.all().exclude(id=request.user.id)
-    return render(request, 'home.html', {"posts":posts,"profile":profile, "users":users, })
+    return render(request, 'home.html', {"posts":posts,"profile":profile, "users":users,"views":to_follow, })
 
 # Create your views here.
 def login_page(request):

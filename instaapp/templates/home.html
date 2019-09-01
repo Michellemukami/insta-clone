@@ -18,7 +18,7 @@
           <div class="card-body">
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><a href="{% url 'comment'%}"><i  class="far fa-comment" ></i></a>    <i class="far fa-heart">{{post.like}}</i></li>
-              <li class="list-group-item"><b>instakami:</b> {% autoescape on%}{{post.image_caption|safe}}{% endautoescape %}</li>
+              <li class="list-group-item"><b>{{user.username}}</b> {% autoescape on%}{{post.image_caption|safe}}{% endautoescape %}</li>
 
             </ul>
           </div>
@@ -65,4 +65,8 @@
     </div>
 
   </div>
+  <style>
+  body{font-family :'Gentium Basic', serif;
+  }
+  </style>
 {% endblock %}
