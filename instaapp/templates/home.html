@@ -13,14 +13,12 @@
           <div class="card-header">
             <h5 id='red' class="card-title"><b>{{post.image_name}}</b></h5>
           </div>
-          
-
           <img src="{{post.insta_image.url}}" class="card-img-top img-fluid" alt="dummy" width="100%">
-          
+
           <div class="card-body">
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><i class="far fa-comment"></i>      <i class="far fa-heart">{{post.like}}</i></li>
-              <li class="list-group-item"><b>insta:</b> {% autoescape on%}{{post.image_caption|safe}}{% endautoescape %}</li>
+              <li class="list-group-item"><b>instakami:</b> {% autoescape on%}{{post.image_caption|safe}}{% endautoescape %}</li>
 
             </ul>
           </div>
@@ -28,13 +26,13 @@
 
         {% empty %}
           <div class="row">
-            <h2>Nothing here. Give us a while</h2>
+            <h2>Nothing here. </h2>
           </div>
         {% endfor %}
       </div>
       <div class="col-md-4 responsive ">
         <div class="row">
-          <img src="{{Profile.profile_image.url}}" alt="hamna" height="50px" width="50px" class="rounded-circle"> <a href="{% url 'user'%}"><p style="color:black;font-weight:bolder;text-decoration:none;"><b>{{user.username}}</b></p></a>
+          <img src="{{Profile.profile_image.url}}" alt="hamna" height="50px" width="50px" class="rounded-circle"> <a href="{% url 'profile'%}"><p style="color:black;font-weight:bolder;text-decoration:none;"><b>{{user.username}}</b></p></a>
         </div><br>
           <div class="row">
             <div class="card" style="width: 18rem;">
