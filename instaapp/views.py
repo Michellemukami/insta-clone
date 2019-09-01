@@ -1,8 +1,8 @@
 
 
-import datetime as dt
+
 from django.http  import HttpResponse,Http404
-from .models import Article,NewsLetterRecipients
+from .models import Image,NewsLetterRecipients
 from django.shortcuts import render,redirect
 from .forms import NewsLetterForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect
@@ -18,9 +18,9 @@ from .forms import NewArticleForm, NewsLetterForm
 def welcome(request):
     return render(request, 'welcome.html')
 
-def news_today(request):
-    date = dt.date.today()
-    news = Article.todays_news()
+def insta(request):
+    
+    insta = Image.objects.all()
     if request.method == 'POST':
         form = NewsLetterForm(request.POST)
         if form.is_valid():
@@ -30,17 +30,11 @@ def news_today(request):
             recipient = NewsLetterRecipients(name = name,email =email)
             recipient.save()
             send_welcome_email(name,email)
-            HttpResponseRedirect('news_today')
+            HttpResponseRedirect('insta')
     else:
         form = NewsLetterForm()
-    return render(request, 'all-news/todays-news.html', {"date": date,"news":news,"letterForm":form})
-@login_required(login_url='/accounts/login/')
-def article(request,article_id):
-    try:
-        article = Article.objects.get(id = article_id)
-    except DoesNotExist:
-        raise Http404()
-    return render(request,"all-news/article.html", {"article":article})
+    return render(request, 'insta/main-posts.html', {"date": date,"insta":insta,"letterForm":form})
+
 @login_required(login_url='/accounts/login/')
 def new_article(request):
     current_user = request.user
@@ -50,27 +44,13 @@ def new_article(request):
             article = form.save(commit=False)
             article.editor = current_user
             article.save()
-        return redirect('newsToday')
+        return redirect('insta')
 
     else:
         form = NewArticleForm()
-    return render(request, 'new_article.html', {"form": form}) 
+    return render(request, 'new_insta.html', {"form": form}) 
 
-def past_days_news(request, past_date):
-    try:
-        # Converts data from the string Url
-        date = dt.datetime.strptime(past_date, '%Y-%m-%d').date()
-    except ValueError:
-        # Raise 404 error when ValueError is thrown
-        raise Http404()
-        assert False
 
-    if date == dt.date.today():
-        return redirect(news_today)
-
-    news = Article.days_news(date)
-    return render(request, 'all-news/past-news.html',{"date": date,"news":news})
-    
 def search_results(request):
 
     if 'article' in request.GET and request.GET["article"]:
