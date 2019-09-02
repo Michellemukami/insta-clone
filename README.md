@@ -48,7 +48,7 @@ NO known Bugs.
 * JavaScript
 * CSS
 
-Support and contact details
+###Support and contact details
 
 Please reach out to me at 'michellemukami.g@gmail.com' for any queries concerning this or any other code.
 License
