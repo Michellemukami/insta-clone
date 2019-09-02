@@ -18,6 +18,7 @@ def home(request):
     profile = Profile.objects.get(username=current_user)
     users = Profile.objects.all()
     views = Profile.objects.all()
+    
     to_follow = User.objects.all().exclude(id=request.user.id)
     return render(request, 'home.html', {"posts":posts,"profile":profile, "users":users,"views":to_follow, })
 
