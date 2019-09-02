@@ -24,24 +24,7 @@ def home(request):
 # Create your views here.
 def login_page(request):
     return render(request, 'registration/welcome.html')
-@login_required(login_url='/accounts/login/')
-def insta(request):
-    
-    insta = Image.objects.all()
-    
-    if request.method == 'POST':
-        form = NewsLetterForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['your_name']
-            email = form.cleaned_data['email']
 
-            recipient = NewsLetterRecipients(name = name,email =email)
-            recipient.save()
-            send_welcome_email(name,email)
-            HttpResponseRedirect('insta')
-    else:
-        form = NewsLetterForm()
-    return render(request, 'insta/main-posts.html', {"insta":insta,"letterForm":form})
 
 
 
