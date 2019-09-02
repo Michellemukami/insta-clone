@@ -28,6 +28,7 @@ def login_page(request):
 def insta(request):
     
     insta = Image.objects.all()
+    
     if request.method == 'POST':
         form = NewsLetterForm(request.POST)
         if form.is_valid():
