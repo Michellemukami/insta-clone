@@ -25,11 +25,6 @@ def home(request):
 def login_page(request):
     return render(request, 'registration/welcome.html')
 
-
-
-
-
-
 def search_results(request):
 
     if 'article' in request.GET and request.GET["article"]:
