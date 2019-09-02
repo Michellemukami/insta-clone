@@ -9,7 +9,6 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
 from .forms import NewArticleForm, NewsLetterForm, NewsProfileForm,CommentForm
-
 from django.contrib.auth.models import User
 
 @login_required(login_url='/accounts/login/')
