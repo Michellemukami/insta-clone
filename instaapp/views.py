@@ -29,6 +29,7 @@ def login_page(request):
 
 
 
+
 def search_results(request):
 
     if 'article' in request.GET and request.GET["article"]:
